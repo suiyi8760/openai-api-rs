@@ -29,5 +29,6 @@ pub async fn get_openai_response(
         .await?
         .json::<ChatCompletionRes>()
         .await?;
-    Ok(res.choices)
+    println!("{:?}", &res);
+    Ok(res.choices.unwrap_or_else(Vec::new))
 }

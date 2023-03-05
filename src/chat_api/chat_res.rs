@@ -2,11 +2,11 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct ChatCompletionRes {
-    id: String,
-    object: String,
-    created: i64,
-    pub choices: Vec<ChatChoice>,
-    usage: ChatUsage,
+    id: Option<String>,
+    object: Option<String>,
+    created: Option<i64>,
+    pub choices: Option<Vec<ChatChoice>>,
+    usage: Option<ChatUsage>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
