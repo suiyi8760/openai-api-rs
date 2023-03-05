@@ -26,9 +26,11 @@ pub async fn get_openai_response(
         .headers(headers)
         .json(&req_body)
         .send()
-        .await?
-        .json::<ChatCompletionRes>()
         .await?;
+    let res_text = res.text().await?;
+    println!("源数据：{}", res_text);
+    let res = serde_json::from_str::<ChatCompletionRes>(&res_text).unwrap();
+
     println!("{:?}", &res);
     Ok(res.choices.unwrap_or_else(Vec::new))
 }
